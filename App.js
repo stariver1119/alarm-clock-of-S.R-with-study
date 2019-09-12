@@ -1,84 +1,65 @@
-import React from 'react';
-import { StyleSheet, Text, View, ImageBackground, Button, Alert, ScrollView } from 'react-native';
+import React, { Component } from 'react';
+import {
+  StyleSheet, Text, View, TextInput, ScrollView
+} from 'react-native';
+import Forecast from './Forecast';
 
 
 
-export default function App() {
-  return (
-    <View style={styles.container}>
-      <ScrollView>
-        <ImageBackground
-          source={require("./1.jpg")}
-          style={styles.backimg}>
+class WeatherProject extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      zip: '',
+      forecast: {
+        main: 'Clouds',
+        description: 'few cloulds',
+        temp: 45.7
+      }
+    }
 
-          <Text style={styles.firsttxt}>'I am just a girl, standing in front of a boy , asking him to love her'{'\n'}
+  }
+  _handleTextChange(event) {
+    console.log(event.nativeEvent.text);
+    this.setState({ zip: event.nativeEvent.text });
+  }
 
-            영화 노팅힐의 명대사이다.
-            나 단지 소녀일 뿐이야 한 소년 앞에 서서 그녀를 사랑해달라고 부탁하는..
-            애나 스콧이라는 등장인물이 유명한 배우인 본인의 직업은 사랑과 전혀 상관없다는 말처럼 들린다.
-          심지어 사랑을 하면 어른도 아니게 되고 소녀가 된다는 말 같기도 하다. {'\n'}
-
-            그러다 이 영화에 대한 감명이 아직 남아있는 지금 '멜로가 체질'이라는 드라마에
-            서 또 하나의 명대사를 만났다.친구에게 조언을 해주는 상황에서 나왔는데
-            '세상에 대단한 사람 따로 없고, 모자란 사람 따로 없어.'라는 말을 했다. 마침 이
-          드라마에서 조언을 받는 캐릭터도 우연히도 배우였다.{'\n'}
-
-            두 가지 대사를 듣고 조금 생각에 잠겨 들었다.
-            마냥 생각에만 빠지기 아까워 바로 컴퓨터를 켜고 글을 쓰고 있는 중이다.
-            사담을 조금 곁들였다. 나는 두 대사에 보물을 만난 듯 공감했다. 낮고 높음은 사람과
-            사람을 비교할 때 절대 쓰이면 안 되는 점수 체계라고 생각해왔기 때문이다. 사람은
-            각각의 소우주라고 불릴 정도로 복잡한 존재이다. 어느 누가 감히 그 복잡한 사람의
-            개별 속성들을 다 체계화하고 수치화해서 높낮이를 가려내겠다면 그 기준에 한해서
-            인정할 수 있다. 그러나 보는 사람에 따라 또 달라지는 것이 사람의 모습이다.
-            그런 사람들이 서로 사랑을 하고 만나려는 때에는 오히려 더 변화를 이뤄낸다.
-            사랑을 하는 사람들은 정말 활기차지고, 사랑을 통해 변화한다. 좋은 쪽이 아닐 수도 있다.
-            그래도 변화한다. 어쨌든 높이 떠있는 별 같은 존재는 이 세상에 사람으로 존재하지는 않는다는
-          말이다. 가끔 별일뿐 가끔은 누구보다 인간적인 소녀의 모습일 테니.{'\n'}
-
-            그런데도 몇몇 사람들은 자신이 상대보다 낮다고 생각하는 경우가 있을 것이다.
-            우리는 여기서 열등감, 자존심, 자격지심 같은 감정을 꺼낸다.
-            그러나 나는 그러한 감정이 때때로 좋다. 이 감정들의 역할은 정지 신호이다.
-            아직 사랑을 할 준비가 되지 않았다는 레드라이트인 것이다.
-            그도 그럴 것이 상대보다 본인을 낮게 사고 있다는 것은 본인을 스스로를 인정해주지
-            못한다는 이야기이다. 이것은 겸손은 아니다. 겸손이란 이것과 비슷하기는 하다.
-            겸손은 스스로도 인정하며 스스로가 모르는 것도 인정하는 상태여서 여유를 얻고
-            남 앞에서 어필하는 것이다. 아직 더 올라갈 것이라고 ㅎ. 또 겸손에 대한 사담이었다.
-            스스로를 인정하는 것 그것은 자기 자신을 사랑하는 것이다. 세상에 꺼내어 전할 수 있는
-            모든 사랑은 자신을 사랑하는 일이 선행되어야 가능하다. 이 일을 하지 않았기에
-            우리는 빨간불을 만나는 것이다. 진실은 저것들이다.
-            대단한 사람 없고 못난 사람 없는 것 그러니 먼저 자신을 사랑해주라 그러다 보면
-            당신은 진실 앞에 서 있을 테니{'\n'}
-
-            끝으로 저 대사들이 나에게로 와 나에게 무엇을 남길지 생각해보았다.
-            솔직히 나는 나를 많이 사랑하는 상태에 있기 때문에 대단하다고 생각하고 살아간다.
-            근데 사실은 다를 것이 없다는 것이 나에게 여유를 선물했고 용기도 선물 받았다.
-            그래 나는 그저 한 소년이니 궁금한 것 재밌는 것 하고 싶은 것만 하겠노라고,
-            만약 하지 못한데도 최대로 노력하겠다고.
+  render() {
+    return (
+      <View style={styles.container}>
+        <ScrollView>
+          <Text style={styles.welcome}>
+            You input {this.state.zip}.
         </Text>
-          <Button title="Press me"
-            onPress={() => Alert.alert('ㅗㅗㅗㅗ')} />
-
-        </ImageBackground>
-      </ScrollView>
-
-    </View>
-  );
+          <Forecast main={this.state.forecast.main}
+            description={this.state.forecast.description}
+            temp={this.state.forecast.temp} />
+          <TextInput
+            style={styles.input}
+            onSubmitEditing={(event) => this._handleTextChange(event)} />
+        </ScrollView>
+      </View>
+    )
+  }
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: '#4D4D4D',
     alignItems: 'center',
     justifyContent: 'center',
   },
-  backimg: {
-    flex: 1,
-    width: '100%',
-    height: '100%',
-
+  input: {
+    fontSize: 20,
+    borderWidth: 2,
+    height: 40
   },
-  firsttxt: {
-    fontSize: 36,
+  welcome: {
+    fontSize: 20,
+    textAlign: 'center',
+    margin: 10,
   }
 });
+
+export default WeatherProject;
